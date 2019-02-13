@@ -1,0 +1,31 @@
+environment:
+  PYTHON: "C:\\Python36"
+  PYPIPASSWORD:
+    secure: PIkaT8nR3rGAsDFAuwFA4A==
+
+install:
+  - SET "PYTHONHOME=%PYTHON%"
+  - SET "PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+  - c:\python36\python.exe -m pip install -U pip wheel setuptools twine
+  - pip install -r requirements.txt
+  - pip install -r requirements-dev.txt
+  - pip install scons
+
+before_test:
+  - python --version
+  - scons --version
+
+test_script:
+  - pycodestyle . --max-line-length=120
+  - python -m pytest
+
+build_script:
+  - "[ -e dist ] && rm dist -rf || true"
+  - scons -j%NUMBER_OF_PROCESSORS%
+  - python setup.py bdist_wheel
+
+deploy_script:
+  - "echo [pypi] > %USERPROFILE%\\.pypirc"
+  - "echo username: WingC >> %USERPROFILE%\\.pypirc"
+  - "echo password: %PYPIPASSWORD% >> %USERPROFILE%\\.pypirc"
+  - if "%APPVEYOR_REPO_TAG%"=="true" ( twine upload dist/* ) else ( echo "Not deploying because not a tagged commit." )
