@@ -3,7 +3,7 @@ from setuptools import find_packages
 
 setuptools.setup(
     name="carrier-sample",
-    version="0.1.7",
+    version="0.1.8",
     author="WingC",
     author_email="1018957763@qq.com",
     description="high speed acquisition card program for carrier && single && highlight",
