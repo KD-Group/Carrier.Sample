@@ -32,7 +32,7 @@ class Result:
     def process(self):
         self.wave = np.array(self.wave)
         self.wave = self.wave[self.wave != 0]
-        self.voltage_amplitude = np.max(wave)
+        self.voltage_amplitude = np.max(self.wave)
         self.time_line = np.array([self.sampling_interval * i for i in range(len(self.wave))])
 
     @property
