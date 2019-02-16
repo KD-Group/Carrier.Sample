@@ -35,6 +35,22 @@ class Result:
         self.voltage_amplitude = np.max(self.wave)
         self.time_line = np.array([self.sampling_interval * i for i in range(len(self.wave))])
 
+    def update_value(self, other):
+        self.error = other.error
+        self.message = other.message
+
+        self.sampler_name = other.sampler_name
+        self.measuring = other.measuring
+        self.success = other.success
+
+        self.max_voltage = other.max_voltage
+        self.min_voltage = other.min_voltage
+        self.sampling_interval = other.sampling_interval
+        self.wave = other.wave
+        self.time_line = other.time_line
+        self.tau = other.tau
+        self.voltage_amplitude = other.voltage_amplitude
+
     @property
     def chinese_message(self) -> str:
         return self.ErrorMessageMapper[self.message]
