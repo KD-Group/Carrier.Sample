@@ -27,10 +27,12 @@ class Result:
         self.wave = []
         self.time_line = []
         self.tau = 0.0
+        self.voltage_amplitude = 0.0
 
     def process(self):
         self.wave = np.array(self.wave)
         self.wave = self.wave[self.wave != 0]
+        self.voltage_amplitude = np.max(wave)
         self.time_line = np.array([self.sampling_interval * i for i in range(len(self.wave))])
 
     @property
