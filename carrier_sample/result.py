@@ -33,8 +33,8 @@ class Result:
         self.max_voltage = 0.0
         self.min_voltage = 0.0
         self.sampling_interval = 0.0  # us
-        self.wave = []
-        self.time_line = []
+        self.wave = np.array([])
+        self.time_line = np.array([])
         self.tau = 0.0
         self.voltage_amplitude = 0.0
 
