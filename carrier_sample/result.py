@@ -14,7 +14,7 @@ class Result:
     }
 
     def __init__(self):
-        self.init_value()
+        self.clear_value()
 
     def process(self):
         self.wave = np.array(self.wave)
@@ -22,7 +22,7 @@ class Result:
         self.voltage_amplitude = np.max(self.wave)
         self.time_line = np.array([self.sampling_interval * i for i in range(len(self.wave))])
 
-    def init_value(self):
+    def clear_value(self):
         self.error = False
         self.message = ''
 

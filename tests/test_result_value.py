@@ -16,7 +16,7 @@ class MyTestCase(unittest.TestCase):
         copy_result = Result()
         copy_result.update_value(result)
         self.result_value_equal(result, copy_result)
-        result.init_value()
+        result.clear_value()
         another = Result()
         self.result_value_equal(result, another)
 
