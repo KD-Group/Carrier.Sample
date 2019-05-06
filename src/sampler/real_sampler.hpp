@@ -31,7 +31,7 @@ namespace Sampler {
 
             // dynamic range setting
             AiChannelCollection* channels = bfdAiCtrl->getChannels();
-            channels->getItem(0).setValueRange(V_Neg5To5);
+            channels->getItem(0).setValueRange(V_Neg15To15);
 
             // sampling rate setting
             ConvertClock * convertClock = bfdAiCtrl->getConvertClock();
