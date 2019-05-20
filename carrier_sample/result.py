@@ -19,7 +19,9 @@ class Result:
     def process(self):
         self.wave = np.array(self.wave)
         self.wave = self.wave[self.wave != 0]
-        self.voltage_amplitude = np.max(self.wave) if self.wave.size > 0 else 0
+        self.max_voltage = np.max(self.wave) if self.wave.size > 0 else 0
+        self.min_voltage = np.min(self.wave) if self.wave.size > 0 else 0
+        self.voltage_amplitude = self.max_voltage - self.min_voltage
         self.time_line = np.array([self.sampling_interval * i for i in range(len(self.wave))])
 
     def clear_value(self):
