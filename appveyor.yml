@@ -18,12 +18,11 @@ before_test:
   - swig -version
 
 test_script:
-  - pycodestyle . --max-line-length=120
+  - pycodestyle . --max-line-length=120 --exclude=carrier_sample/TCarrier
   - python -m pytest
 
 build_script:
   - "[ -e dist ] && rm dist -rf || true"
-  - scons -j%NUMBER_OF_PROCESSORS%
   - python setup.py bdist_wheel
 
 deploy_script:

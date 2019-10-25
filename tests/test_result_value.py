@@ -4,6 +4,14 @@ from carrier_sample import sampler, Result
 
 
 class MyTestCase(unittest.TestCase):
+    def setUp(self):
+        sampler.start_server()
+        sampler.start_client()
+
+    def tearDown(self):
+        sampler.stop_client()
+        sampler.stop_client()
+
     def test_update_result_value(self):
         sampler.set_sampler(sampler_name="mock_sampler")
 

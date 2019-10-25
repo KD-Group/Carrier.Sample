@@ -39,18 +39,18 @@ class Sampler:
         if self.transport is not None:
             self.transport.close()
 
-    def stop_server(self, path: str):
-        if self.check_sample_running():
+    def start_service(self, path: str):
+        if self.check_service_running():
             return
         start_result = os.system('START /b ' + path)
         if start_result != 0:
             raise self.Error('Sampler Driver Service Start Failed, Check port 9090 is in use?')
 
     # Must call stop after program exit
-    def stop_sample_exe(self):
+    def stop_server(self):
         os.system(f'TASKKILL /F /IM "{self.execution_name}"')
 
-    def check_sample_running(self) -> bool:
+    def check_service_running(self) -> bool:
         check_result = os.system(f'TASKLIST | findstr "{self.execution_name}"')
         if check_result != 0:
             return False
@@ -68,11 +68,11 @@ class Sampler:
         if not os.path.exists(execution_path):
             execution_path = os.path.join(main_path, '..', '..', self.execution_name)
         if os.path.exists(execution_path):
-            return self.stop_server(os.path.abspath(execution_path))
+            return self.start_service(os.path.abspath(execution_path))
 
         # try to find sample.exe in system path when release
         if shutil.which(self.execution_name):
-            return self.stop_server(shutil.which(self.execution_name))
+            return self.start_service(shutil.which(self.execution_name))
 
         raise self.Error('Sample Driver Not Found')
 
@@ -114,7 +114,7 @@ sampler = Sampler()
 # Flowing is a simple example
 # Must start server before client
 # Every command returns a code whether the command is success except measuring && query
-# WARNING: must call stop_sample_exe when program exit or crash
+# WARNING: must call stop_server when program exit or crash
 
 # try:
 #     sampler.start_server()
