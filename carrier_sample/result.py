@@ -1,5 +1,7 @@
 import numpy as np
 
+from .TCarrier.carrier.ttypes import TResult
+
 
 class Result:
     ErrorMessageMapper = {
@@ -15,6 +17,20 @@ class Result:
 
     def __init__(self):
         self.clear_value()
+
+    def get_value_from_thrift(self, value: TResult):
+        self.error = value.error
+        self.success = bool(1 - self.error)
+        self.message = value.message
+
+        self.sampler_name = value.sampler_name
+        self.measuring = value.measuring
+
+        self.max_voltage = value.max_voltage
+        self.min_voltage = value.min_voltage
+        self.sampling_interval = value.sampling_interval
+        self.wave = value.wave
+        self.tau = value.tau
 
     def process(self):
         self.wave = np.array(self.wave)
