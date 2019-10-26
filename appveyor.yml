@@ -10,12 +10,10 @@ install:
   - pip install -r requirements.txt
   - pip install -r requirements-dev.txt
   - pip install scons
-  - cinst swig
 
 before_test:
   - python --version
   - scons --version
-  - swig -version
 
 test_script:
   - pycodestyle . --max-line-length=120 --exclude=carrier_sample/TCarrier
