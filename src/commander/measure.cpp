@@ -71,7 +71,7 @@ void to_query() {
         Base::variable(tau);
 
         printf("wave = [");
-        const auto &values = Global::result.wave;
+        const auto &values = Global::result.average_wave;
         std::for_each(values.begin(), values.end(), [](double value){printf("%.3f,", value);});
         printf("]\n");
     } else {

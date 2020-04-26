@@ -93,7 +93,7 @@ bool summation(const Config::SamplingConfig &config, Result::SamplingResult &res
 bool average(const Config::SamplingConfig &config, Result::SamplingResult &result) {
     // get a average wave
     const int copy_length = result.copy_length;
-    std::vector<double> average_wave;
+    result.average_wave.clear();
     int average_times = copy_length / 1000 + 1;
 
     double first_percent_voltage = result.wave[0] * config.first_percent +
@@ -109,7 +109,7 @@ bool average(const Config::SamplingConfig &config, Result::SamplingResult &resul
         // average wave again...
         sum += result.wave[i];
         if ((i + 1) % average_times == 0) {
-            average_wave.push_back(sum / average_times);
+            result.average_wave.push_back(sum / average_times);
             sum = 0;
         }
 

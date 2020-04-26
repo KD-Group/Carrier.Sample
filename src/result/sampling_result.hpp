@@ -27,6 +27,8 @@ struct SamplingResult {
 
     std::vector<double> buffer;
     std::vector<double> wave;
+    std::vector<double> average_wave;
+
     bool success;
     bool measuring;
     double max_voltage;
