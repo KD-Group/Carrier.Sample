@@ -8,7 +8,7 @@
 namespace Constant {
 
 const size_t SafeSamplingFrequency = std::size_t(2e7);  //Hz Warning!!! Set to 3e7 will lost some data
-const size_t SamplingInterval = 45;    //Hz
+const size_t SamplingInterval = 40;    //Hz
 const size_t WaveformCount = SafeSamplingFrequency / SamplingInterval;
 const size_t MaxBufferSize = WaveformCount * 33;
 
